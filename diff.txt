@@ -1,0 +1,1 @@
+Files log.txt and sampleoutput/mac/log_64_200_25_49328573.txt are identical
