@@ -17,16 +17,25 @@ Genetic Algorithms take the idea of Darwinism and apply it as a heuristic algori
  - You have a way to combine parts of two (or more) solutions (in our case, we can combine parts of multiple routes, more on this in the implementation section).
 
 Here's a general overview of the steps a genetic algorithm follows:
-
 ![alt text](https://github.com/dandrews19/TravelingSalesman/blob/main/overview.jpg?raw=true)
 
-## Input
-The input to the program is given through the command line with the following parameters:
+- Initialize: Generate a random initial population
+- Calculate Fitness: Calculate the fitness function for each member of the population (for us, "more fit" = shorter distance = better)
+- Selection: Based on fitness rankings, select pairs of individuals to reproduce, giving some (but not all) preference to fitter individuals
+- Crossover/Mutation: Reproduce selected pairs by "crossing over" attributes, might also introduce some random mutations
+- Next Generation: After calculating crossover/mutation for all pairs, we'll have a new generation for the "current population"
+- Repeat: keep repeating until reaching a condition of termination
 
-1. **inputFile**: The path to the file containing the problem data.
-2. **popSize**: The size of the population in each generation of the GA.
-3. **numGenerations**: The number of generations for which the GA should run.
-4. **mutationChance**: The chance of a mutation occurring in each generation, represented as an integer (1 equals a 1% chance).
-5. **seed**: The seed for the random number generator used in the GA.
+## Implementation
 
-For example, to run the program with a population size of 100, for 200 generations, with a 5% mutation chance, and a seed of 1234, on a problem data file named 'problem.dat', you would use:
+The following outlines how the genetic algorithm solution to this problem was implemented. It is also important to note that it was implemented in a functional style in an effort to reduce the need for custom classes, reduce the side effects of functions, and reduce iteration by using functions like std::transform, std::accumulate, std::generate, std::adjacent_difference. 
+
+### Initialize
+For our initial and future populations, I will represent them as a vector of ints corresponding to the index of the location (the first location in the file is 0). For example, this vector: [0, 2, 5, 4, 3, 1] means start at location 0, then got to 2, then 5, then 4, then 3, then 1, and then back to 0 (implied) 
+
+To carry out the population initialization, a function called FillInitialPopulation does the following:
+- Initializes population vector with a size of the desired population size
+- uses std::generate to fill each population with a sequence of numbers from 1 to n-1 and then uses std::shuffle to shuffle each population member create a random starting sequence for each member.
+
+### Calculate Fitness
+
