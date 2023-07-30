@@ -5,7 +5,7 @@ The Traveling Salesman Problem (TSP) is a classic algorithmic problem in the fie
 
 Example route for Los Angeles:
 
-![alt text](https://github.com/dandrews19/TravelingSalesman/blob/main/example.jpg?raw=true)
+![alt text](https://github.com/dandrews19/TravelingSalesman/blob/main/example.jepg?raw=true)
 
 ## Background: Genetic Algorithms
 This is a Genetic Algorithm (GA) implementation designed to solve an optimization problem. The algorithm uses standard GA operators such as selection, crossover, and mutation. The specific problem solved by the algorithm appears to be a variant of the Traveling Salesman Problem (TSP).
