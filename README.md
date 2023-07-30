@@ -31,11 +31,30 @@ Here's a general overview of the steps a genetic algorithm follows:
 The following outlines how the genetic algorithm solution to this problem was implemented. It is also important to note that it was implemented in a functional style in an effort to reduce the need for custom classes, reduce the side effects of functions, and reduce iteration by using functions like std::transform, std::accumulate, std::generate, std::adjacent_difference. 
 
 ### Initialize
-For our initial and future populations, I will represent them as a vector of ints corresponding to the index of the location (the first location in the file is 0). For example, this vector: [0, 2, 5, 4, 3, 1] means start at location 0, then got to 2, then 5, then 4, then 3, then 1, and then back to 0 (implied) 
+Initial and future populations are represented as a vector of ints corresponding to the index of the location (the first location in the file is 0). For example, this vector: [0, 2, 5, 4, 3, 1] means start at location 0, then go to 2, then 5, then 4, then 3, then 1, and then back to 0 (implied) 
 
-To carry out the population initialization, a function called FillInitialPopulation does the following:
+To carry out the population initialization, a function called FillInitialPopulation in TSP.cpp does the following:
 - Initializes population vector with a size of the desired population size
 - uses std::generate to fill each population with a sequence of numbers from 1 to n-1 and then uses std::shuffle to shuffle each population member create a random starting sequence for each member.
 
 ### Calculate Fitness
 
+To quantify fitness, we use the distance of the route, with a shorter distance equalling better fitness. For this project, Haversine Distance was used to calculate the distance between two points to more accurately get the distance between the two points on a sphere.
+
+To carry out the fitness calculations, a function called computeFitness in TSP.cpp does the following:
+- Uses std::transform and std::back_inserter to fill a vector that stores the fitness of each route alongside its index in a std::pair
+- Inside the std::transform, std::adjacent_difference is used to compute the Haversine distance between each stop in the route, and std::accumulate is used to compute the sum of those distances to get a final fitness score
+- There is a separate Haversine Distance calculator function that computes the Haversine distances
+
+
+### Select
+The Selections are represented as a vector of a pair of ints, with the ints representing the "parents" chosen to reproduce for the next generation. 
+
+To carry out the selection process, a function called Select in TSP.cpp does the following:
+1. Uses std::sort to sort the population members by fitness scores (smallest to largest)
+2. Calculate Probabiity of Reproduction
+     1. Fills a vector of probabilities, representing the probability of each member being chosen for reproduction. Each member is   given the same initial probability (1/populationSize)
+     2. Multiply the two fittest members' probabilities by 6 (6 is an arbitrary number)
+     3. Multiply the remainder of the top half members' probabilities by 3 (3 is arbitrary)
+     4. Use std::accumulate and std::transform to renormalize the probabilities by summing them up and dividing each probabilty by the sum
+3. A
