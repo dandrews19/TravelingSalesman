@@ -1,5 +1,16 @@
 # Genetic Algorithm to Solve Traveling Salesman Problem
 
+## Table of Contents
+
+- [Background](#background)
+  - [The Traveling Salesman Problem](#the-traveling-salesman-problem)
+  - [Genetic Algorithms](#genetic-algorithms)
+- [Implementation](#implementation)
+  - [Subsection 2.1](#subsection-2.1)
+- [Sample](#section-2)
+  - [Subsection 2.1](#subsection-2.1)
+
+
 ## Background
 
 ### The Traveling Salesman Problem
