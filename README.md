@@ -6,9 +6,13 @@
   - [The Traveling Salesman Problem](#the-traveling-salesman-problem)
   - [Genetic Algorithms](#genetic-algorithms)
 - [Implementation](#implementation)
-  - [Subsection 2.1](#subsection-2.1)
-- [Sample](#section-2)
-  - [Subsection 2.1](#subsection-2.1)
+  - [Initialize](#initialize)
+  - [Calculate Fitness](#calculate-fitness)
+  - [Select](#select)
+  - [Crossover](#crossover)
+- [Sample](#sample)
+  - [Input](#input)
+  - [Output](#output)
 
 
 ## Background
