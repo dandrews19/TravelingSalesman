@@ -1,5 +1,7 @@
 # Genetic Algorithm to Solve Traveling Salesman Problem
 
+Dylan Andrews
+
 ## Table of Contents
 
 - [Background](#background)
